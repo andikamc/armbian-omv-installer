@@ -14,10 +14,10 @@ DEBIAN_FRONTEND=noninteractive sudo apt --purge -y remove vnstat
 DEBIAN_FRONTEND=noninteractive wget https://raw.githubusercontent.com/OpenMediaVault-Plugin-Developers/installScript/master/install
 DEBIAN_FRONTEND=noninteractive chmod +x ./install
 DEBIAN_FRONTEND=noninteractive version=6 sudo ./install -n
+sed -i "s/httpredir.debian.org/mr.heru.id/g" /etc/apt/sources.list.d/openmediavault-kernel-backports.list
 DEBIAN_FRONTEND=noninteractive sudo apt clean all
 DEBIAN_FRONTEND=noninteractive sudo apt -y autoremove
 DEBIAN_FRONTEND=noninteractive sudo apt -y update
 DEBIAN_FRONTEND=noninteractive sudo apt -y install linux-headers-generic
 DEBIAN_FRONTEND=noninteractive sudo apt -y install docker podman curl wget
 nmcli radio wifi off # force disable wifi
-sed -i "s/httpredir.debian.org/mr.heru.id/g" /etc/apt/sources.list.d/openmediavault-kernel-backports.list
