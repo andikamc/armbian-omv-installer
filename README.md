@@ -8,10 +8,10 @@ To download and execute the script you can use either *wget* or *curl*, feel fre
 *wget script*
 ####  
 ```bash
-sudo wget -O - https://raw.githubusercontent.com/andikamc/armbian-omv-installer/master/installer?date=$(openssl rand -hex 12) | sudo bash
+sudo wget -O - https://raw.githubusercontent.com/andikamc/armbian-omv-installer/master/installer?$(openssl rand -hex 12)&v=1 | sudo bash
 ```
 
 *curl script*
 ```bash
-sudo curl -sSL https://raw.githubusercontent.com/andikamc/armbian-omv-installer/master/installer?date=$(openssl rand -hex 12) | sudo bash
+sudo curl -sSL https://raw.githubusercontent.com/andikamc/armbian-omv-installer/master/installer?$(openssl rand -hex 12)&v=1 | sudo bash
 ```
