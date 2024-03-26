@@ -1,6 +1,5 @@
 #!/bin/bash
-set -xe
-
+# shellcheck disable=SC1090,SC1091,SC2010,SC2016,SC2046,SC2086,SC2174
 ################
 # Setup Script #
 ################
@@ -19,7 +18,7 @@ DEBIAN_FRONTEND=noninteractive sudo apt -y install linux-headers-generic
 DEBIAN_FRONTEND=noninteractive sudo apt -y install docker podman curl wget
 DEBIAN_FRONTEND=noninteractive wget https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install
 DEBIAN_FRONTEND=noninteractive chmod +x ./install
-DEBIAN_FRONTEND=noninteractive sudo ./install -n
+DEBIAN_FRONTEND=noninteractive version=6 sudo ./install -n
 DEBIAN_FRONTEND=noninteractive sudo apt clean all
 DEBIAN_FRONTEND=noninteractive sudo apt -y autoremove
 nmcli radio wifi off # force disable wifi
