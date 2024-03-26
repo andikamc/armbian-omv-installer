@@ -1,0 +1,25 @@
+#!/bin/bash
+set -e
+DEBIAN_FRONTEND=noninteractive
+
+################
+# Setup Script #
+################
+DEBIAN_FRONTEND=noninteractive timedatectl set-timezone Asia/Jakarta # setup timedate locale
+sed -i "s/# net.ipv6.conf.all.disable_ipv6/net.ipv6.conf.all.disable_ipv6/g"/etc/sysctl.conf
+sed -i "s/ENABLED=true/ENABLED=false/g" /etc/default/armbian-zram-config # disable zram
+sed -i "s/deb.debian.org/mr.heru.id/g" /etc/apt/sources.list # change repository debian
+sed -i "s/apt.armbian.com/mirrors.aliyun.com\/armbian/g" /etc/apt/sources.list.d/armbian.list # change repository armbian
+nmcli radio wifi off # force disable wifi
+DEBIAN_FRONTEND=noninteractive systemctl disable --now armbian-zram-config.service # disable zram 
+DEBIAN_FRONTEND=noninteractive systemctl disable --now wpa_supplicant.service # disable zram 
+DEBIAN_FRONTEND=noninteractive sudo apt remove --purge vnstat
+DEBIAN_FRONTEND=noninteractive sudo apt clean all
+DEBIAN_FRONTEND=noninteractive sudo apt -y autoremove
+DEBIAN_FRONTEND=noninteractive sudo apt -y update
+DEBIAN_FRONTEND=noninteractive sudo apt -y install linux-headers-generic
+DEBIAN_FRONTEND=noninteractive sudo apt -y install docker podman curl wget
+DEBIAN_FRONTEND=noninteractive wget https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install
+DEBIAN_FRONTEND=noninteractive chmod +x ./install
+DEBIAN_FRONTEND=noninteractive sudo ./install -f -n
+DEBIAN_FRONTEND=noninteractive systemctl reboot
