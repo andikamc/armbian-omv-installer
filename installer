@@ -5,7 +5,7 @@ set -xe
 # Setup Script #
 ################
 DEBIAN_FRONTEND=noninteractive timedatectl set-timezone Asia/Jakarta # setup timedate locale
-sed -i "s/# net.ipv6.conf.all.disable_ipv6/net.ipv6.conf.all.disable_ipv6/g"/etc/sysctl.conf
+sed -i "s/# net.ipv6.conf.all.disable_ipv6/net.ipv6.conf.all.disable_ipv6/g" /etc/sysctl.conf
 sed -i "s/ENABLED=true/ENABLED=false/g" /etc/default/armbian-zram-config # disable zram
 sed -i "s/deb.debian.org/mr.heru.id/g" /etc/apt/sources.list # change repository debian
 sed -i "s/apt.armbian.com/mirrors.aliyun.com\/armbian/g" /etc/apt/sources.list.d/armbian.list # change repository armbian
