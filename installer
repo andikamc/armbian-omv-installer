@@ -11,15 +11,13 @@ sed -i "s/deb.debian.org/mr.heru.id/g" /etc/apt/sources.list # change repository
 sed -i "s/apt.armbian.com/mirrors.aliyun.com\/armbian/g" /etc/apt/sources.list.d/armbian.list # change repository armbian
 DEBIAN_FRONTEND=noninteractive systemctl disable --now wpa_supplicant.service vnstat.service # disable zram 
 DEBIAN_FRONTEND=noninteractive sudo apt --purge -y remove vnstat
+DEBIAN_FRONTEND=noninteractive wget https://raw.githubusercontent.com/OpenMediaVault-Plugin-Developers/installScript/master/install
+DEBIAN_FRONTEND=noninteractive chmod +x ./install
+DEBIAN_FRONTEND=noninteractive version=6 sudo ./install -n
 DEBIAN_FRONTEND=noninteractive sudo apt clean all
 DEBIAN_FRONTEND=noninteractive sudo apt -y autoremove
 DEBIAN_FRONTEND=noninteractive sudo apt -y update
 DEBIAN_FRONTEND=noninteractive sudo apt -y install linux-headers-generic
 DEBIAN_FRONTEND=noninteractive sudo apt -y install docker podman curl wget
-DEBIAN_FRONTEND=noninteractive wget https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install
-DEBIAN_FRONTEND=noninteractive chmod +x ./install
-DEBIAN_FRONTEND=noninteractive version=6 sudo ./install -n
-DEBIAN_FRONTEND=noninteractive sudo apt clean all
-DEBIAN_FRONTEND=noninteractive sudo apt -y autoremove
 nmcli radio wifi off # force disable wifi
 sed -i "s/httpredir.debian.org/mr.heru.id/g" /etc/apt/sources.list.d/openmediavault-kernel-backports.list
